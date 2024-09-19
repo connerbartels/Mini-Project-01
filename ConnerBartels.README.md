@@ -111,7 +111,6 @@ This will include:
 #### (11) Repeat steps 2-8 to set up to set up the other LAN
 
 #### (12) Configure IP address for the other LAN on the router (to finish setting up the default gateway)
-
 Type:
     1. config t
     2. int g0/1 (enter)
