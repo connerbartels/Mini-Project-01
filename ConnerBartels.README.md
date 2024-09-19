@@ -1,42 +1,42 @@
-#### Conner Bartels
-#### Mini Project 01
+### Conner Bartels
+### Mini Project 01
 
 # Step-by-Step Configuration Guide
 
-##### Acquire all the necessary hardware and software needed to set up a 2 LAN networks that are connected with each other
+### (1) Acquire all the necessary hardware and software needed to set up a 2 LAN networks that are connected with each other
 
 This will include:
-Router
-Switch (x2)
-End devices (x4)
-Ethernet cables (x6)
-Serial console cable
+- Router (x1)
+- Switch (x2)
+- End devices (x4)
+- Ethernet cables (x6)
+- Serial console cable (x1)
 
-##### Add end devices to the switch
+#### (2) Add end devices to the switch
 
-Connect the switch to the client (which is a computer in our case)
-Do this with an ethernet cable. Plug one end of the ethernet cable into an available port on the switch. Plug the other end into the PC.
-Connect the other end device to the switch using the same method.
+- Connect the switch to the client (which is a computer in our case)
+     - Do this with an ethernet cable. Plug one end of the ethernet cable into an available port on the switch. Plug the other end into the PC.
+- Connect the other end device to the switch using the same method.
 
-##### Set IP addresses to the end devices
+#### (3) Set IP addresses to the end devices
 
-Open System Settings, go to the Network tab, turn off wifi, click on “USB 10/100/1000 LAN” (this should appear after you connect the switch and the end device), click on “Make Active”, then click on “Details…”, then click on “TCP/IP”. There will be something that’s called “Configure IPv4”. To the right of that, there will be something that says “Using DHCP”. Click on that and change it to “Manually”.
-Enter your own IP address: (don’t use .1 for the last octet, this is saved for the default gateway)
-Enter the subnet mask: Enter the subnet mask that aligns with the IP address (the subnet mask is essentially the binary code of the IP address transformed into decimal)
-Enter the router ip address: use .1 for the last octet
+- Open System Settings, go to the Network tab, turn off wifi, click on “USB 10/100/1000 LAN” (this should appear after you connect the switch and the end device), click on “Make Active”, then click on “Details…”, then click on “TCP/IP”. There will be something that’s called “Configure IPv4”. To the right of that, there will be something that says “Using DHCP”. Click on that and change it to “Manually”.
+     - Enter your own IP address: (don’t use .1 for the last octet, this is saved for the default gateway)
+     - Enter the subnet mask: Enter the subnet mask that aligns with the IP address (the subnet mask is essentially the binary code of the IP address transformed into decimal)
+     - Enter the router ip address: use .1 for the last octet
 
-##### Set up web browser on one of the end devices
+#### (4) Set up web browser on one of the end devices
 
-Install MAMP
-Select Nginx as the web server
-Update nginx port from 8888 to 80 and press ok
-Press the start button
-Create index.html in the directory for you operating system
-Mac: /Applications/MAMP/htdocs/index.html
-Use Visual Studio Code or another code editor and type
-“Welcome to Capstone Consulting {LAN##}”
+1. Install MAMP
+2. Select Nginx as the web server
+3. Update nginx port from 8888 to 80 and press ok
+4. Press the start button
+5. Create index.html in the directory for you operating system
+     - Mac: /Applications/MAMP/htdocs/index.html
+6. Use Visual Studio Code or another code editor and type
+     - “Welcome to Capstone Consulting {LAN##}”
 
-##### Set up the DNS on one of the end devices
+#### Set up the DNS on one of the end devices
 
 Install NAMO local DNS Server
 Click + to add new host and create the host name
@@ -53,7 +53,7 @@ Confirm DNS Servers configuration
 Networksetup -listallnetworkservices
 Networksetup -getdnsservers{NETWORK INTERFACE}
 
-##### Test Connection by pinging
+#### Test Connection by pinging
 
 Go to terminal one of the end devices
 Type “ping” and the IP address of the other end device that’s on the LAN
@@ -67,18 +67,18 @@ When done with the network, remove the firewall rule command:
 Netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
 Do this on both end devices to see if you can ping each other
 
-##### Test the Web Server
+#### Test the Web Server
 
 Using the end device that is running DNS, go to a web browser and type in”http://” and then whatever the domain name is. The DNS should convert the web name into the IP address and the web page should load.
 Troubleshooting method:
 Check if all the IP addresses were typed in correctly
 Check to see if the cables are plugged in
 
-##### Add the router
+#### Add the router
 
 Connect the switch to the router with ethernet cables
 
-##### Configure IPs on the router (to set up the default gateway)
+#### Configure IPs on the router (to set up the default gateway)
 
 Turn on the router
 Download a driver on an end device
@@ -106,11 +106,11 @@ This writes the configuration into memory
 show startup-config
 Confirms the config was permanently saved
 
-##### Turn the port status on (on the router)
+#### Turn the port status on (on the router)
 
-##### Repeat steps 2-8 to set up to set up the other LAN
+#### Repeat steps 2-8 to set up to set up the other LAN
 
-##### Configure IP address for the other LAN on the router (to finish setting up the default gateway)
+#### Configure IP address for the other LAN on the router (to finish setting up the default gateway)
 
 Type:
 config t
@@ -123,7 +123,7 @@ wr
 show ip interface brief
 This will check to see if the IP addresses have been configured. Numbers that show up should be 0/0 and 0/1 instead of 0/0/0 and 0/0/1
 
-##### Test Connection
+#### Test Connection
 
 Make sure the computers on different LANs can ping each other
 Test to see if computers on different LANs can make an HTTP request to the other LAN’s web server IP
