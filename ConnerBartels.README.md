@@ -36,43 +36,43 @@ This will include:
 6. Use Visual Studio Code or another code editor and type
      - “Welcome to Capstone Consulting {LAN##}”
 
-#### Set up the DNS on one of the end devices
+#### (5) Set up the DNS on one of the end devices
 
-Install NAMO local DNS Server
-Click + to add new host and create the host name
-Set IP Address to individual IP address of designated laptop that does DNS server
-System Settings
-Network
-Select the connected ethernet interface
-Details
-DNS
-Remove and existing DNS Servers
-Add the IP address of the laptop that is assigned to act as the DNS server
-Confirm DNS Servers configuration
-	From CLI (terminal):
-Networksetup -listallnetworkservices
-Networksetup -getdnsservers{NETWORK INTERFACE}
+1. Install NAMO local DNS Server
+2. Click + to add new host and create the host name
+3. Set IP Address to individual IP address of designated laptop that does DNS
+    - server
+    - System Settings
+    - Network
+    - Select the connected ethernet interface
+    - Details
+    - DNS
+    - Remove and existing DNS Servers
+    - Add the IP address of the laptop that is assigned to act as the DNS server
+4. To confirm DNS Servers configuration from CLI (terminal), type:
+    - Networksetup -listallnetworkservices
+    - Networksetup -getdnsservers{NETWORK INTERFACE}
 
-#### Test Connection by pinging
+#### (6) Test Connection by pinging
 
-Go to terminal one of the end devices
-Type “ping” and the IP address of the other end device that’s on the LAN
-If this doesn’t work, do this (if you are on a windows:
-Disable Windows Defender or
-Update the firewall on the windows machine to allow ICMP
-Add a firewall rule to allow ICMP command:
-netsh advfirewall firewall add rule name=”Allow ICMPv4-In”
-protocol=icmpv4:any,any dir=in action=allow
-When done with the network, remove the firewall rule command:
-Netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
-Do this on both end devices to see if you can ping each other
+- Go to terminal one of the end devices
+- Type “ping” and the IP address of the other end device that’s on the LAN
+    - If this doesn’t work, do this (if you are on a windows:
+        - Disable Windows Defender or
+        - Update the firewall on the windows machine to allow ICMP
+            - Add a firewall rule to allow ICMP command:
+                - netsh advfirewall firewall add rule name=”Allow ICMPv4-In”
+                - protocol=icmpv4:any,any dir=in action=allow
+            - When done with the network, remove the firewall rule command:
+                - Netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
+    - Do this on both end devices to see if you can ping each other
 
-#### Test the Web Server
+#### (7) Test the Web Server
 
-Using the end device that is running DNS, go to a web browser and type in”http://” and then whatever the domain name is. The DNS should convert the web name into the IP address and the web page should load.
-Troubleshooting method:
-Check if all the IP addresses were typed in correctly
-Check to see if the cables are plugged in
+- Using the end device that is running DNS, go to a web browser and type in”http://” and then whatever the domain name is. The DNS should convert the web name into the IP address and the web page should load.
+    - Troubleshooting method:
+        - Check if all the IP addresses were typed in correctly
+        - Check to see if the cables are plugged in
 
 #### Add the router
 
