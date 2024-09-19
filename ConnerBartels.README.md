@@ -74,73 +74,75 @@ This will include:
         - Check if all the IP addresses were typed in correctly
         - Check to see if the cables are plugged in
 
-#### Add the router
+#### (8) Add the router
 
-Connect the switch to the router with ethernet cables
+    - Connect the switch to the router with ethernet cables
 
-#### Configure IPs on the router (to set up the default gateway)
+#### (9) Configure IPs on the router (to set up the default gateway)
 
-Turn on the router
-Download a driver on an end device
-Connect a serial console cable from the router to one of the end devices
-Go to the terminal code and type:
-router enable 
-this enters EXEC mode to make changes
-now what’s going to pop up is router# 
-configure terminal 
-press enter
-hostname router01 
-press enter
-interface gigabitEthernet 0/0
-t press enter
-ip address 192.168.0.1 255.255.255.192
-press enter
-This is just an example IP address and subnet mask, enter the correct numbers when actually doing this
-description ##to switch 01## 
-then press enter
-This describes the connection we are creating from the router to the switch
-no shutdown
-exit
-wr
-This writes the configuration into memory
-show startup-config
-Confirms the config was permanently saved
+1. Turn on the router
+2. Download a driver on an end device
+3. Connect a serial console cable from the router to one of the end devices
+4. Go to the terminal code and type:
+    - router enable 
+        - this enters EXEC mode to make changes
+        - now what’s going to pop up is router# 
+    - configure terminal 
+        - press enter
+    - hostname router01 
+        - press enter
+    - interface gigabitEthernet 0/0
+        - press enter
+    - ip address 192.168.0.1 255.255.255.192
+        - press enter
+            - This is just an example IP address and subnet mask, enter the correct numbers when actually doing this
+    - description ##to switch 01## 
+        - then press enter
+            - This describes the connection we are creating from the router to the switch
+    - no shutdown
+    - exit
+    - wr
+        - This writes the configuration into memory
+    - show startup-config
+        - Confirms the config was permanently saved
 
-#### Turn the port status on (on the router)
+#### (10) Turn the port status on (on the router)
 
-#### Repeat steps 2-8 to set up to set up the other LAN
+#### (11) Repeat steps 2-8 to set up to set up the other LAN
 
-#### Configure IP address for the other LAN on the router (to finish setting up the default gateway)
+#### (12) Configure IP address for the other LAN on the router (to finish setting up the default gateway)
 
 Type:
-config t
-int g0/1 (enter)
-ip add 172.16.0.1 255.255.0.0 (enter)
-description ##switch 01
-no shut (enter)
-exit
-wr
-show ip interface brief
-This will check to see if the IP addresses have been configured. Numbers that show up should be 0/0 and 0/1 instead of 0/0/0 and 0/0/1
+    1. config t
+    2. int g0/1 (enter)
+    3. ip add 172.16.0.1 255.255.0.0 (enter)
+    4. description ##switch 01
+    5. no shut (enter)
+    6. exit
+    7. wr
+    8. show ip interface brief
+        - This will check to see if the IP addresses have been configured. Numbers that show up should be 0/0 and 0/1 instead of 0/0/0 and 0/0/1
 
-#### Test Connection
+#### (13) Test Connection
 
-Make sure the computers on different LANs can ping each other
-Test to see if computers on different LANs can make an HTTP request to the other LAN’s web server IP
-Make the HTTP request using a domain name
+    1. Make sure the computers on different LANs can ping each other
+    2. Test to see if computers on different LANs can make an HTTP request to the other LAN’s web server IP
+    3. Make the HTTP request using a domain name
 
 # FAQ:
 
-On our project, Christopher was not able to ping the other LAN but they were able to ping him. What do we do?
-We realized that Christopher likely had a firewall set up. Therefore, we concluded that he either had to disable the firewall or update the firewall to allow ICMP. In order to update the firewall, you must type in this code to the terminal:
-netsh advfirewall firewall add rule name=”Allow ICMPv4-In”
-protocol=icmpv4:any,any dir=in action=allow
-After you are done with the firewall, you can remove it by typing in this code to the terminal:
-netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
-We tried the ping again and it worked.
-We connected the switch to the router with an ethernet cable and an end device to the router with a serial console cable. We are attempting to configure it and we typed all the code in correctly, yet we think we are still missing something. What might be the issue?
-Though this seems obvious, my group actually forgot to turn on the router. Make sure to turn it on and set the port status to on after setting its IP address.
-How do end devices send data to one another within a LAN?
+1. On our project, Christopher was not able to ping the other LAN but they were able to ping him. What do we do?
+    - We realized that Christopher likely had a firewall set up. Therefore, we concluded that he either had to disable the firewall or update the firewall to allow ICMP. In order to update the firewall, you must type in this code to the terminal:
+        - netsh advfirewall firewall add rule name=”Allow ICMPv4-In”
+        - protocol=icmpv4:any,any dir=in action=allow
+    - After you are done with the firewall, you can remove it by typing in this code to the terminal:
+        - netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
+    - We tried the ping again and it worked.
+
+2. We connected the switch to the router with an ethernet cable and an end device to the router with a serial console cable. We are attempting to configure it and we typed all the code in correctly, yet we think we are still missing something. What might be the issue?
+    - Though this seems obvious, my group actually forgot to turn on the router. Make sure to turn it on and set the port status to on after setting its IP address.
+    - 
+3. How do end devices send data to one another within a LAN?
 ARP (Address Resolution Protocol)
 ARP finds a physical MAC (media access control) to match with an IP address on a local network. The purpose of this is so the end device that wants to send data knows where exactly to send it. It essentially helps devices on the same network communicate with each other.
 Process
