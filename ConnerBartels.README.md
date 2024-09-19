@@ -198,5 +198,4 @@ What is an ICMP?
     While the project was ultimately successful, there are several areas where I could improve in the future. First and foremost, I need to pay more attention to details. The mistake of mistyping an IP address and forgetting to turn on the router could have been easily avoided with attentiveness. In future projects, I will make sure to double-check my configurations and hardware, which should save time and confusion.
 
     Another area for improvement is firewall management. While we were able to resolve the issue of the blocked ping requests by adjusting the firewall settings, I realized I still don’t understand how firewalls interact with network traffic. In the future, I hope to spend more time learning about firewall rules and configurations.
-
     Finally, I would like to improve my overall efficiency when working on networking projects. While I was able to solve the problems that arose during the setup, it took longer than expected to identify and fix some of the issues. By practicing more and becoming familiar with common network issues and their solutions, I can improve my troubleshooting speed and overall project efficiency.
