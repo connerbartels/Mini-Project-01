@@ -200,3 +200,7 @@ What is an ICMP?
     Another area for improvement is firewall management. While we were able to resolve the issue of the blocked ping requests by adjusting the firewall settings, I realized I still don’t understand how firewalls interact with network traffic. In the future, I hope to spend more time learning about firewall rules and configurations.
     
     Finally, I would like to improve my overall efficiency when working on networking projects. While I was able to solve the problems that arose during the setup, it took longer than expected to identify and fix some of the issues. By practicing more and becoming familiar with common network issues and their solutions, I can improve my troubleshooting speed and overall project efficiency.
+
+# System Architect Design
+
+![System_Architect_Diagram](https://github.com/user-attachments/assets/c8038141-8a7e-46a2-80a5-5f552841228f)
