@@ -1,0 +1,51 @@
+
+# FAQ:
+
+1. On our project, Christopher was not able to ping the other LAN but they were able to ping him. What do we do?
+    - We realized that Christopher likely had a firewall set up. Therefore, we concluded that he either had to disable the firewall or update the firewall to allow ICMP. In order to update the firewall, you must type in this code to the terminal:
+        - netsh advfirewall firewall add rule name=”Allow ICMPv4-In”
+        - protocol=icmpv4:any,any dir=in action=allow
+    - After you are done with the firewall, you can remove it by typing in this code to the terminal:
+        - netsh advfirewall firewall delete rule name=”Allow ICMPv4-In”
+    - We tried the ping again and it worked.
+
+2. We connected the switch to the router with an ethernet cable and an end device to the router with a serial console cable. We are attempting to configure it and we typed all the code in correctly, yet we think we are still missing something. What might be the issue?
+    - Though this seems obvious, my group actually forgot to turn on the router. Make sure to turn it on and set the port status to on after setting its IP address.
+      
+3. How do end devices send data to one another within a LAN?
+- ARP (Address Resolution Protocol)
+- ARP finds a physical MAC (media access control) to match with an IP address on a local network. The purpose of this is so the end device that wants to send data knows where exactly to send it. It essentially helps devices on the same network communicate with each other.
+- Process
+    - ARP Request
+        - Device A needs to communicate with Device B
+        - Device A knows Device B’s IP address but not it’s MAC address
+        - Device A broadcasts an ARP request packet to all devices on the LAN (basically asking “Who has IP address X.X.X.X? Can you please tell me your MAC address?”
+    - ARP Reply
+        - Device B (with the matching IP address) replies with a packet (containing its MAC address). Device A stores this in its “ARP cache” for future references. An ARP cache will temporarily store IP-to-MAC address mappings.
+    - Communication once MAC address is stored
+        - Device A can use the MAC address of Device B to send data in ethernet frames directly to Device B
+     
+4. When you manually set your own IP address, it will ask you to type an IP address, a subnet mask, and the IP address of the router. When I did this for the first time, I wondered what the point of a subnet mask was. Please explain a subnet mask.
+    - A subnet mask is a 32-bit number that divides an IP address into network and host portions. It’s used to determine which part of an IP address is the network address and which part is the host address.
+    - It’s purpose is to help routers and devices on a network understand which IP addresses are within the same local network and which addresses are outside of it
+        - How do hosts know which portion of the 32 bit number is network and which portion is host? This is the job of the subnet mask. 
+            - Subnet mask is 32 bits long
+                - 255.255.255.0
+                - In binary: 11111111.11111111.11111111.00000000
+                - The first X.X.X represents the network
+                - The last .X represents the host
+            - Example
+                - /24 at the end of an IP address means the subnet mask will start with 255.255.255
+                - This is because the first 24 bits of the subnet mask represent the network. The last 8 bits identify the host address
+              
+What is an ICMP?
+- ICMP (Internet Control Message Protocol)
+    - It is used for network diagnostics and error reporting.
+    - ICMP manages and troubleshoots network operations by sending messages regarding network issues (like unreachable destinations or timeouts)
+    - ICMP doesn’t handle data transfer between hosts, it provides feedback about network operations
+        - Error Reporting
+            - ICMP indicates network problems like unreachable hosts or network congestion
+                - EX: a router cannot deliver a packet to its destination, therefore an ICMP Destination Unreachable message will go back to the source
+                - 
+6. What’s the point of running a DNS on a LAN?
+    - DNS, or Domain Name System, translates domain names into IP addresses, therefore allowing computers to identify each other on a network. DNS allows you to find and website or service by name and not by having to remember confusing IP addresses
